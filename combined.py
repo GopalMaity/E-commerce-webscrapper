@@ -5,6 +5,7 @@ import random
 from utils import userAgent
 from amazon import *
 from flipkart import *
+from ticker import *
 
 app = Flask(__name__)
 
@@ -27,7 +28,7 @@ def index() :
         elif website_choice == "Ticker" :
             ticker_data_json = tickerDataScrapper(product_type)
             if ticker_data_json is not None :
-                return render_template('product.html', product_details=ticker_data_json)
+                return render_template('productTicker.html', product_details=ticker_data_json)
             
     return render_template("index.html")
 

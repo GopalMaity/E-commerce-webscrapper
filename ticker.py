@@ -3,22 +3,44 @@ import requests
 
 def tickerDataScrapper(prod_type) :
 
+    def get_enterprise_value_ticker(soup) :
+        try:
+            enterprise_value = soup.find("span", attrs={"id":"mainContent_ltrlEntValue"}).find("span", attrs={"class":"number"}).string.strip()
+
+        except AttributeError:
+            enterprise_value = "Details Not Available"
+        
+        return enterprise_value
+
+    def get_sector_ticker(soup) :
+        try:
+            sector = soup.find("a", attrs={"class":"font-weight-bold"}).text.strip()
+
+        except AttributeError:
+            sector = "Details Not Available"
+        
+        return sector
+
+
+    def get_name_ticker(soup) :
+        try:
+            name = soup.find("span", attrs={"id":"mainContent_ltrlCompName"}).text.strip()
+
+        except AttributeError:
+            name = "Details Not Available"
+
+        return name
+
+
     def get_title_ticker(soup) :
         try:
             # Outer Tag Object
-            title = soup.find("span", attrs={"id":'mainContent_ltrlCompName'})
-            # print(title.text)
-            # Inner NavigatableString Object
-            title_value = title.text
-
-            # Title as a string value
-            title_string = title_value.strip()
-            print(title_string)
+            title = soup.find("span", attrs={"id":'mainContent_ltrlCompName'}).text.strip()
             
         except AttributeError:
-            title_string = ""	
+            title = ""	
             
-        return title_string
+        return title
 
 
     # Code calling begins here.....	
@@ -41,16 +63,18 @@ def tickerDataScrapper(prod_type) :
     product_details_ticker = []
 
     # Extract product details
-    title = get_title_ticker(soup)
-    price = get_title_ticker(soup)
+    name = get_name_ticker(soup)
+    sector = get_sector_ticker(soup)
+    enterprise_value = get_enterprise_value_ticker(soup)
     rating = get_title_ticker(soup)
     review_count = get_title_ticker(soup)
     availability = get_title_ticker(soup)
 
     # Append details to the list
     product_details_ticker.append({
-        "title": title,
-        "price": price,
+        "name": name,
+        "sector": sector,
+        "enterprise_value": enterprise_value,
         "rating": rating,
         "review_count": review_count,
         "availability": availability

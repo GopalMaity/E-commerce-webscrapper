@@ -55,27 +55,27 @@
     </style>
 </head>
 <body>
+    {% for company in product_details %}
     <div class="container">
-        <h1>Product Details</h1>
+        <h1>{{ company.name }}</h1>
         <table>
             <tr>
-                <th>Title</th>
+                <th>Sector</th>
+                <th>Enterprise Value</th>
+                <th>Market Cap</th>
                 <th>Price</th>
-                <th>Rating</th>
-                <th>Review Count</th>
-                <th>Availability</th>
+                <th>Brands</th>
             </tr>
-            {% for product in product_details %}
                 <tr>
-                    <td>{{ product.title }}</td>
-                    <td>{{ product.price }}</td>
-                    <td>{{ product.rating }}</td>
-                    <td>{{ product.review_count }}</td>
-                    <td>{{ product.availability }}</td>
+                    <td>{{ company.sector }}</td>
+                    <td>{{ company.enterprise_value }} Cr</td>
+                    <td>{{ company.rating }}</td>
+                    <td>{{ company.review_count }}</td>
+                    <td>{{ company.availability }}</td>
                 </tr>
-            {% endfor %}
         </table>
         <button class="home-button" onclick="window.location.href='/'">Back to Home</button>
     </div>
+    {% endfor %}
 </body>
 </html>
