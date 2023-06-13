@@ -65,7 +65,7 @@
                 <th>Review Count</th>
                 <th>Availability</th>
             </tr>
-            {% for product in product_details %}
+            <!-- {% for product in product_details %} -->
                 <tr>
                     <td>{{ product.title }}</td>
                     <td>{{ product.price }}</td>
@@ -73,7 +73,7 @@
                     <td>{{ product.review_count }}</td>
                     <td>{{ product.availability }}</td>
                 </tr>
-            {% endfor %}
+            <!-- {% endfor %} -->
         </table>
         <button class="home-button" onclick="window.location.href='/'">Back to Home</button>
     </div>
