@@ -30,7 +30,7 @@ def index() :
             if ticker_data_json is not None :
                 return render_template('productTicker.html', product_details=ticker_data_json)
             
-    return render_template("index.html")
+    return render_template("login.html")
 
 
 if __name__ == "__main__" :
